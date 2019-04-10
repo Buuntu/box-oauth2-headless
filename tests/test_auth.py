@@ -1,6 +1,6 @@
 import pytest
 import os
-from box_auth import BoxAuth
+from box_auth.box_auth import BoxAuth
 
 
 @pytest.fixture

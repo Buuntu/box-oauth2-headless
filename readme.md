@@ -51,13 +51,14 @@ Follow the boxsdk documentation for how to use the client to access box
 
 # Testing
 
-You need the following environment variables for the tests to work
+You need the following variables in a config_test.py file (root directory) for the tests to work
 ```
-BOX_CLIENT_ID # You can find this in the developer console, under your app configuration
-BOX_CLIENT_SECRET # ""
-BOX_USERNAME
-BOX_PASSWORD
-USER_EMAIL # This is used by your keyring to store the access and refresh token
+client_id = # You can find this in the developer console, under your app configuration
+client_secret =  # ""
+box_username =
+box_password
+user_email # This is used by your keyring to store the access and refresh token
+user # This is used by tests to check that you are the correct user
 ```
 
 # Install

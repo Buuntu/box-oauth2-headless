@@ -1,16 +1,16 @@
 import pytest
-import os
 from box_auth.box_auth import BoxAuth
+import config_test
 
 
 @pytest.fixture
 def box_authenticator():
     return BoxAuth(
-        os.environ['BOX_CLIENT_ID'],
-        os.environ['BOX_CLIENT_SECRET'],
-        os.environ['BOX_USERNAME'],
-        os.environ['BOX_PASSWORD'],
-        os.environ['USER_EMAIL']
+        config_test.client_id,
+        config_test.client_secret,
+        config_test.box_username,
+        config_test.box_password,
+        config_test.user_email,
     )
 
 
@@ -28,11 +28,11 @@ def test_grant_permissions(box_authenticator):
     box_authenticator.authenticate(code)
     box_authenticator.login()
 
-    assert box_authenticator.get_current_user() == os.environ['BOX_USER']
+    assert box_authenticator.get_current_user() == config_test.user
 
 
 def test_login(box_authenticator):
     # access key and refresh key should be stored in keyring at this point
     box_authenticator.login()
 
-    assert box_authenticator.get_current_user() == os.environ['BOX_USER']
+    assert box_authenticator.get_current_user() == config_test.user

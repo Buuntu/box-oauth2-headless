@@ -1,6 +1,5 @@
 from boxsdk import OAuth2, Client
 import keyring
-import box_config
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import urllib.parse as urlparse

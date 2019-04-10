@@ -42,7 +42,12 @@ box = BoxAuth(
 box.login()
 ```
 
-You can get these from the Box developer console
+To get the [boxsdk](https://github.com/box/box-python-sdk) client, just run:
+```
+Client = box.get_client()
+```
+
+Follow the boxsdk documentation for how to use the client to access box
 
 # Testing
 

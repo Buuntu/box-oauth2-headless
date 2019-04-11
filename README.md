@@ -4,11 +4,13 @@ Python package to help connect with a Box API in cases where you don't have acce
 
 # Dependencies
 
-This package depends on keyring, selenium, and boxsdk.  Since selenium runs in headless mode, you will need to make sure geckodriver is installed on your machine (this is done outside of pip unfortunately).
+This package depends on keyring, selenium, and boxsdk.  Since selenium runs in headless mode, you will need to make sure chromedriver is installed on your machine (this is done outside of pip unfortunately).
+
+For instructions on how to do this, see [here](https://tecadmin.net/setup-selenium-chromedriver-on-ubuntu/)
 
 # Usage
 
-Initial login
+Login to Box through OAuth2
 ```
 from box_auth.box_auth import BoxAuth
 
@@ -20,26 +22,9 @@ box = BoxAuth(
     user_email # This is used by your keyring
 )
 
-url = box.authorize() # This will generate a URL to authorize Box acess
-code = box.grant_permissions(url) # Okay access and get the code 
-
-box.authenticate(code) # Use code to get access and refresh tokens
 box.login() # Login
 
 print(box.get_current_user()) # Double check that it worked
-```
-
-Subsequent logins (assuming your refresh token hasn't expired, usually lasts 14 days)
-```
-box = BoxAuth(
-    client_id, # From Box developer console
-    client_secret, # From box developer console
-    box_username,
-    box_password,
-    user_email # This is used by your keyring
-)
-
-box.login()
 ```
 
 To get the [boxsdk](https://github.com/box/box-python-sdk) client, just run:
@@ -59,6 +44,11 @@ box_username =
 box_password
 user_email # This is used by your keyring to store the access and refresh token
 user # This is used by tests to check that you are the correct user
+```
+
+Then from the root directory, simply run
+```
+pytest
 ```
 
 # Install

@@ -104,6 +104,14 @@ class BoxAuth():
         # Read tokens from keyring
         auth_token, refresh_token = self.read_tokens()
 
+        if ((not auth_token) or (not refresh_token)):
+            url = self.authorize()
+
+            code = self.grant_permissions(url)
+
+            self.authenticate(code)
+            auth_token, refresh_token = self.read_tokens()
+
         auth = OAuth2(
             client_id=self._client_id,
             client_secret=self._client_secret,

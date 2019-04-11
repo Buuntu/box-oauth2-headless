@@ -1,6 +1,7 @@
 import pytest
 from box_auth.box_auth import BoxAuth
 import config_test
+import keyring
 
 
 @pytest.fixture
@@ -32,7 +33,10 @@ def test_grant_permissions(box_authenticator):
 
 
 def test_login(box_authenticator):
-    # access key and refresh key should be stored in keyring at this point
+    # reset access and refresh token
+    keyring.set_password(config_test.user_email, 'BOX_ACCESS_TOKEN', '')
+    keyring.set_password(config_test.user_email, 'BOX_REFRESH_TOKEN', '')
+
     box_authenticator.login()
 
     assert box_authenticator.get_current_user() == config_test.user

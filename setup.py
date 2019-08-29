@@ -11,7 +11,7 @@ with open('requirements.txt') as f:
 
 setuptools.setup(
     name='box_oauth',
-    version='0.3.0',
+    version='0.3.1',
     description='Box headless OAuth2 client',
     author='Gabriel Abud',
     author_email='gabriel.jabud@gmail.com',

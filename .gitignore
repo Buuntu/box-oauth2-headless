@@ -4,3 +4,4 @@ box_oauth.egg-info
 dist
 build
 config_test.py
+box_credentials
